@@ -13,7 +13,7 @@ For each node, print its  value on a new line (console.log in Javascript).
 Input Format
 
 The first line of input contains , the number of elements in the linked list.
-The next  lines contain one element each, the  values for each node. */
+The next  lines contain one element each, the  values for each node */
 
 function printLinkedList(head) {
     while (head) {
