@@ -23,3 +23,15 @@ SELECT player_name,
        COUNT(CASE WHEN year = 'JR' THEN 1 ELSE NULL END) AS jr_count,
        COUNT(CASE WHEN year = 'SR' THEN 1 ELSE NULL END) AS sr_count
   FROM benn.college_football_players
+
+  --
+
+  SELECT companies.permalink,
+       companies.name,
+       companies.status,
+       COUNT(investments.investor_permalink) AS investors
+  FROM tutorial.crunchbase_companies companies
+  LEFT JOIN tutorial.crunchbase_investments_part1 investments
+    ON companies.permalink = investments.company_permalink
+   AND investments.funded_year > companies.founded_year + 5
+ GROUP BY 1,2, 3
