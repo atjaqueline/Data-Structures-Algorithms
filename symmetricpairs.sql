@@ -35,3 +35,37 @@ SELECT player_name,
     ON companies.permalink = investments.company_permalink
    AND investments.funded_year > companies.founded_year + 5
  GROUP BY 1,2, 3
+
+ --
+ Select D.Name as Doctor_name,
+       P.Name as Professor_name,
+       S.Name as Singer_name,
+       A.Name as Actor_name
+from(
+    (Select Name,
+            row_number() over (partition by occupation
+                               order by name) as id
+     from Occupations
+     where Occupation = 'Doctor') as D
+    full outer join
+    (Select Name,
+            row_number() over (partition by occupation
+                               order by name) as id
+     from Occupations
+     where Occupation = 'Professor') as P
+    on D.id = P.id
+    full outer join
+    (Select Name,
+            row_number() over (partition by occupation
+                               order by name) as id
+     from Occupations
+     where Occupation = 'Singer') as S
+    on P.id = S.id
+    full outer join
+    (Select Name,
+            row_number() over (partition by occupation
+                               order by name) as id
+     from Occupations
+     where Occupation = 'Actor') as A
+    on S.id = A.id
+   );
