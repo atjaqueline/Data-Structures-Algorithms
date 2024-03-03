@@ -1,3 +1,4 @@
+-- sql code challenges
 select F1.X,
        F1.Y
 from Functions as F1
@@ -69,3 +70,27 @@ from(
      where Occupation = 'Actor') as A
     on S.id = A.id
    );
+
+   --
+   SELECT 
+    product_line,
+    AVG(unit_price) AS avg_price,
+    SUM(quantity) AS tot_pieces,
+    SUM(total) AS total_gain
+FROM sales
+GROUP BY product_line
+ORDER BY total_gain DESC
+
+--
+
+SELECT 
+    product_line,
+    AVG(unit_price) AS avg_price,
+    SUM(quantity) AS tot_pieces,
+    SUM(total) AS total_gain
+FROM sales
+GROUP BY product_line
+HAVING SUM(total) > 40000
+ORDER BY total_gain DESC
+
+---
