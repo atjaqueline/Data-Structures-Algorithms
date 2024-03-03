@@ -94,3 +94,18 @@ HAVING SUM(total) > 40000
 ORDER BY total_gain DESC
 
 ---
+
+SELECT
+REPEAT(username, 3) AS username,
+REVERSE(zipcode) AS zipcode
+FROM people
+
+> CREATE TABLE people
+(
+username VARCHAR(50),
+zipcode VARCHAR(50)
+);
+
+
+> INSERT INTO people (username, zipcode) VALUES ('alex','12345'), ('tim','67890');
+INSERT 0 2
